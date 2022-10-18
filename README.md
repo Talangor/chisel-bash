@@ -21,6 +21,23 @@
 - sets ufw firewall to deny by default and allows 443/tcp and 22/tcp
 **note:** if your machine is listening on another port for ssh change **ufw allow 22/tcp**
 
+
+## how to use
+
+### on the remote machine
+- curl -LO https://github.com/Talangor/chisel-bash/blob/main/chisel-remote.sh
+- chmod +x ./chisel-remote.sh
+- ./chisel-remote.sh
+- give port
+- copy fingerprint at the end
+
+### on the local machine 
+- curl -LO https://github.com/Talangor/chisel-bash/blob/main/chisel-ir.sh
+- chmod +x chisel-ir.sh
+- ./chisel-ir.sh
+- give remote ip and port
+- give fingerprint you just copied from remote server
+
 ## user creation
 - useradd -M UserName
 - passwd UserName
