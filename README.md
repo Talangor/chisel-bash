@@ -22,7 +22,7 @@
 **note:** if your machine is listening on another port for ssh change **ufw allow 22/tcp**
 
 
-## how to use
+## ubuntu commands
 
 ### on the remote machine
 - curl -LO https://github.com/Talangor/chisel-bash/blob/main/chisel-remote.sh
@@ -38,7 +38,7 @@
 - give remote ip and port
 - give fingerprint you just copied from remote server
 
-## user creation
+### user creation
 - useradd -M UserName
 - passwd UserName
 - to connect you could use any **socks5** client and set local server and its port supplied with user and password
@@ -46,3 +46,6 @@
 
 **Special thanks to jpillora**
 
+https://github.com/jpillora/chisel
+https://www.inet.no/dante/
+http://www.squid-cache.org/
