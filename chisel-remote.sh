@@ -1,4 +1,9 @@
 #!/bin/bash
+
+read -p 'port: ' LPORT
+apt update
+apt install squid -qqy
+
 if [ "$DEBUG" == "1" ]; then
 	set -x
 fi
@@ -161,8 +166,6 @@ function install {
 	cleanup
 }
 install
-apt update
-apt install squid -qqy
 cat <<EOT > /etc/squid/squid.conf
 acl SSL_ports port 443
 acl Safe_ports port 80		# http
@@ -210,7 +213,7 @@ systemctl daemon-reload
 
 echo <<EOT > /usr/local/bin/chisel.sh
 #!/bin/bash
-chisel server --key U1az6MwSkoPt6DxS5t+t5CBdF4yO6YWkwZFqlVqXZHC= -p $port1
+chisel server --key U1az6MwSkoPt6DxS5t+t5CBdF4yO6YWkwZFqlVqXZHC= -p $LPORT
 EOT
 
 chmod +x /usr/local/bin/chisel.sh

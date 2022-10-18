@@ -7,7 +7,7 @@ apt update
 apt install dante-server python3 git -qqy
 git clone https://github.com/Talangor/chisel-bash.git
 mv chisel-bash/chisel /usr/local/bin
-chmod +x /usr/chisel/bin/chisel
+chmod +x /usr/local/bin/chisel
 
 cat <<EOT > /usr/local/bin/proxy.py
 import urllib.request
@@ -56,13 +56,15 @@ EOT
 cat <<EOT > /usr/local/bin/chisel-cron.sh
 #!/bin/bash
 python3 /usr/local/bin/proxy.py
-
 EOT
 
+chmod +x /usr/local/bin/chisel.sh
 touch /var/log/chisel.log
 cat <<EOT >> /etc/crontab
 */2 * * * * root /usr/local/bin/chisel-cron.sh >> /var/log/chisel.log
 EOT
+
+chmod +x /usr/local/bin/chisel-cron.sh
 cat <<EOT > /etc/systemd/system/chisel.service
 [Unit]
 After=network.service
@@ -73,9 +75,8 @@ ExecStart=/usr/local/bin/chisel.sh
 [Install]
 WantedBy=default.target
 EOT
-systemctl daemon-reload
 
-chmod +x /usr/local/bin/chisel.sh
+systemctl daemon-reload
 systemctl enable chisel
 systemctl restart chisel
 
