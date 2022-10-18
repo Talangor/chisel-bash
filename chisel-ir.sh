@@ -112,6 +112,7 @@ EOT
 
 systemctl mask systemd-resolved
 systemctl stop systemd-resolved
+systemctl start danted
 cat 'nameserver 127.0.0.1' > /etc/resolv.conf
 systemctl status chisel
 
