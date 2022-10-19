@@ -179,6 +179,7 @@ acl Safe_ports port 488		# gss-http
 acl Safe_ports port 591		# filemaker
 acl Safe_ports port 777		# multiling http
 cache deny all
+max_filedesc 4096
 http_access allow localhost
 include /etc/squid/conf.d/*.conf
 http_access allow localhost
@@ -198,7 +199,10 @@ EOT
 
 systemctl enable squid
 systemctl restart squid
-read -p 'port: ' $port1
+cat <<EOT > /etc/sysctl.conf
+fs.file-max = 65535
+EOT
+sysctl -p
 cat <<EOT > /etc/systemd/system/chisel.service
 [Unit]
 After=network.service
