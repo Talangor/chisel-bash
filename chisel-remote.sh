@@ -3,7 +3,7 @@
 read -p 'port: ' LPORT
 apt update
 apt install squid -qqy
-UID = 'head -c 45 /dev/random | base64'
+RAND=$(openssl rand -base64 45)
 if [ "$DEBUG" == "1" ]; then
 	set -x
 fi
@@ -218,7 +218,7 @@ systemctl daemon-reload
 
 cat <<EOT > /usr/local/bin/chisel.sh
 #!/bin/bash
-chisel server --key $UID -p $LPORT
+chisel server --key $RAND -p $LPORT
 EOT
 
 chmod +x /usr/local/bin/chisel.sh
