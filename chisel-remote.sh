@@ -216,7 +216,7 @@ EOT
 
 systemctl daemon-reload
 
-echo <<EOT > /usr/local/bin/chisel.sh
+cat <<EOT > /usr/local/bin/chisel.sh
 #!/bin/bash
 chisel server --key U1az6MwSkoPt6DxS5t+t5CBdF4yO6YWkwZFqlVqXZHC= -p $LPORT
 EOT
