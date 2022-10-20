@@ -115,4 +115,5 @@ systemctl stop systemd-resolved
 systemctl start danted
 cat 'nameserver 127.0.0.1' > /etc/resolv.conf
 systemctl status chisel
-
+ufw deny 3128/tcp
+ufw enable
