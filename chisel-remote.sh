@@ -3,7 +3,7 @@
 read -p 'port: ' LPORT
 apt update
 apt install squid -qqy
-UID = "$RANDOM | md5sum | head -c 45"
+UID = 'head -c 45 /dev/random | base64'
 if [ "$DEBUG" == "1" ]; then
 	set -x
 fi
